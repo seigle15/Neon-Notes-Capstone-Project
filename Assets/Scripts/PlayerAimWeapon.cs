@@ -24,7 +24,6 @@ public class PlayerAimWeapon : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             aimTransform.rotation = Quaternion.Euler(0f, 0f, angle);
-            Debug.Log("Holding down mouse");
         }
     }
     
