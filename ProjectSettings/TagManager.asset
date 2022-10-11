@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Ground Layer
+  - Mid Layer
   - 
   - 
   - Projectiles
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 3084766335
+    locked: 0
+  - name: Mid
+    uniqueID: 1351546473
+    locked: 0
+  - name: Projectile
+    uniqueID: 1953219653
+    locked: 0
+  - name: Player Stats
+    uniqueID: 391349425
     locked: 0
