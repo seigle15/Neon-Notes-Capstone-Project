@@ -7449,7 +7449,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9460a26f83a88474eba3e8ace366521a, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.174
+  m_Volume: 0.109
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -7608,7 +7608,6 @@ MonoBehaviour:
   moveSpeed: 6
   playerRB: {fileID: 1797710137}
   PlayerAnimator: {fileID: 1797710140}
-  RhythmController: {fileID: 1859088446}
 --- !u!50 &1797710137
 Rigidbody2D:
   serializedVersion: 4
