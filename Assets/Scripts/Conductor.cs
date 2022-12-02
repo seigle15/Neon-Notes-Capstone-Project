@@ -34,14 +34,27 @@ public class Conductor : MonoBehaviour
 
 //an AudioSource attached to this GameObject that will play the music.
     public AudioSource musicSource;
-    void Start()
+    void Awake()
     {
         //Load the AudioSource attached to the Conductor GameObject
-        musicSource = GetComponent<AudioSource>();
+       //musicSource = GetComponent<AudioSource>();
 
+        MusicManager instance = gameObject.AddComponent<MusicManager>();
+
+        musicSource = instance.selectedMusic;
+        
         //Calculate the number of seconds in each beat
-        secPerBeat = 60f / songBpm;
-
+        if (instance != null)
+        {
+            secPerBeat = instance.GetDifficulty();
+            Debug.Log(secPerBeat);
+        }
+        else
+        {
+            secPerBeat = 60f / songBpm;
+        }
+        
+        
         //Record the time when the music starts
         dspSongTime = (float)AudioSettings.dspTime;
 

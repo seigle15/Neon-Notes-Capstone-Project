@@ -11,46 +11,66 @@ using Vector3 = UnityEngine.Vector3;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform aimTransform;
+    //Movement Variables
+    [FormerlySerializedAs("animator")] public Animator PlayerAnimator;
     public float moveSpeed = 6f; 
     public Rigidbody2D playerRB;
-    [FormerlySerializedAs("animator")] public Animator PlayerAnimator;
-    Vector2 movement;
-    private bool isOnSpecial;
+    private Vector2 movement;
+    private Vector3 lastMove;
     private Camera theCam;
-    private Vector3 mousePos;
+    
+    //Attack and special variables
+    [SerializeField] private LayerMask specialLayerMask;
     private Quaternion attackAngle;
+    public Transform aimTransform;
+    private bool isOnSpecial;
+    private Vector3 mousePos;
+    public float specialCoolDown = 1f;
+    public float specialCounter;
+
+    public RhythmController beatChecker;
     public event EventHandler<PositionArgs> OnPlayerAttack;
     
-
     public class PositionArgs : EventArgs
     {
         public Vector2 attackPos;
         public Vector3 attackDirection;
     }
-
+    
+    //Health variables
+    public int maxHealth = 20;
+    public int currentHealth;
+    public HealthBar healthBar;
+    
     private void Awake()
     {
         theCam = Camera.main;
         aimTransform = transform.Find("Aim");
         playerRB = GetComponent<Rigidbody2D>();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
     
     // Update is called once per frame
     void Update() 
     {
-        
+
         mousePos = theCam.ScreenToWorldPoint(Input.mousePosition) - transform.localPosition;
         PlayerMovement();
         PlayerAim();
-
-        //RhythmController.OnBeat();
-        if (Input.GetMouseButtonDown(0)) {
-            OnPlayerAttack?.Invoke(this, new PositionArgs{attackPos = aimTransform.position, 
-                attackDirection = mousePos});
+        if (specialCounter > 0)
+        {
+            specialCounter -= Time.deltaTime;
         }
 
-        if (Input.GetMouseButtonDown(1))
+        //&& beatChecker.getBeat()
+        if (Input.GetMouseButtonDown(0) && beatChecker.getBeat()) {
+            OnPlayerAttack?.Invoke(this, new PositionArgs{attackPos = aimTransform.position, 
+                attackDirection = mousePos});
+            beatChecker.setBeat(false);
+        }
+
+        if (Input.GetMouseButtonDown(1) && specialCounter <= 0)
         {
             isOnSpecial = true;
         }
@@ -77,6 +97,10 @@ public class PlayerController : MonoBehaviour
         //input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+        if (movement.x != 0 || movement.y != 0)
+        {
+            lastMove = movement;
+        }
 
         PlayerAnimator.SetFloat("Horizontal", movement.x);
         PlayerAnimator.SetFloat("Vertical", movement.y);
@@ -89,11 +113,20 @@ public class PlayerController : MonoBehaviour
         if (isOnSpecial)
         {
             float dashAmount = 2f;
-            playerRB.MovePosition((Vector2)transform.position + movement * dashAmount);
+            Vector3 dashPos = transform.position + lastMove * dashAmount;
+            RaycastHit2D raycastHit2D = Physics2D.Raycast(
+                transform.position, lastMove, dashAmount, specialLayerMask);
+            if (raycastHit2D.collider != null)
+            {
+                dashPos = raycastHit2D.point;
+            }
+            playerRB.MovePosition(dashPos);
             isOnSpecial = false;
+            specialCounter = specialCoolDown;
         }
         
     }
+    
     
     
 }

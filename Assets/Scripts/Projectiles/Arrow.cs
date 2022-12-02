@@ -10,7 +10,9 @@ public class Arrow : MonoBehaviour
     public Vector3 shootDir;
     public const int speed = 10;
     public SpriteRenderer arrowSprite;
-
+    private int baseDamage = 5;
+    public static event Action<bool> CheckConsecutive;
+    
     public void Setup(Vector3 shootDir)
     {
         this.shootDir = shootDir;
@@ -27,5 +29,18 @@ public class Arrow : MonoBehaviour
         transform.position += shootDir * (moveSpeed * Time.deltaTime);
         arrowRB.velocity = transform.right * speed;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<EnemyAI>(out EnemyAI enemy))
+        {
+            Debug.Log("Hit");
+            enemy.TakeDamge(baseDamage);
+            CheckConsecutive?.Invoke(true);
+            Destroy(gameObject);
+        }
+        
+    }
+    
     
 }
