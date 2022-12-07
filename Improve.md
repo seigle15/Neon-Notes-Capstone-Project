@@ -16,7 +16,7 @@ This project was made using Jet Brains Rider IDE. Here are the main draws to usi
   - linking your college email to get access to all of Jet Brains software development tools
 - Rider has plugins that link to Unity and Github
   - These plugins saved lots of time linking a pushing to this repository 
-  - The only downside is that only the code is pushed through the plugin, you would still need to use gitbash or gitUI
+  - The only downside is that only the code is pushed through the plugin, you would still need to use GitBash or GitUI
 
 ## How The Game Works
 All important folders for how the program operates is located in the Assets folder. Recommend opening that up during the explaination. There is a lot going on but breaking it down into each Scene, in the Scene folder, then describing how each is managed will help. 
@@ -24,7 +24,21 @@ All important folders for how the program operates is located in the Assets fold
 1. Opening Scene
   - Controls the difficultly settings and which music will be passed into the next Scene, Gameplay_Scene.
   - The Canvas is the main aspect show to the user and has three buttons for the settings
-    - The Scripts being used here are the MainMenu which controls the the settings 
-      - MainMenu is a Singlton that can be acessed through an instance valariable      
-
+  - MainMenu Script 
+    - Which controls the the settings 
+    - Depending on the selected setting from the buttons
+  - MusicManager Script 
+    - Recieves Selected difficulty and Music from MainMenu
+    - Is a Singleton that can be acessed through an instance valariable in the other Scenes 
+  
+2. Gameplay_Scene
+  - Game Management  
+    - GameManager Script
+      -  Starts the spawn rate for the enemies
+      -  Keeps track of points for the player through the Canvas and text
+    - Conductor Script
+      -   
+    - Rhythm Controller
+      -  Handles the Rhythm logic 
+   
 
