@@ -13,7 +13,7 @@ To play the game you need:
    - Then click on the executable named ... ""
 
 ## How To play
-- Click [here] for an overview to start playing
+- Click [here](Playing.md) for an overview to start playing
 
 ## For future improvements
 - Please see [Current State and Improvement]
