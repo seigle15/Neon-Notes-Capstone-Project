@@ -16,7 +16,7 @@ To play the game you need:
 - Click [here](Playing.md) for an overview to start playing
 
 ## For future improvements
-- Please see [Current State and Improvement]
+- Please see [Current State and Improvement](Improve.md)
 
 ## Acknowledgements
 - Capstone Advisor: [Dr. Jason Isaacs](https://ciapps.csuci.edu/directory/Search?q=jason.isaacs) at [*California State University Channel Islands*](https://www.csuci.edu)
