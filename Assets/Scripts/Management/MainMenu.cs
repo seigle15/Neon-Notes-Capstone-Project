@@ -25,7 +25,7 @@ public class MainMenu : MonoBehaviour
         switch (diff)
         {
             case 0:
-                if(musicDiff != null)
+                if(musicDiff != null) 
                     _manager.ChangeMusic(musicDiff[0]);
                 Debug.Log("Easy Mode");
                 difficultyBeats = .25f;
@@ -42,9 +42,13 @@ public class MainMenu : MonoBehaviour
                 Debug.Log("Easy Mode");
                 difficultyBeats = .6f;
                 break;
+            case 3:
+                Application.Quit();
+                break;
         }
         _manager.SetDifficulty(difficultyBeats);
         PlayGame();
     }
+    
     
 }
