@@ -32,12 +32,55 @@ All important folders for how the program operates is located in the Assets fold
     - Is a Singleton that can be acessed through an instance valariable in the other Scenes 
   
 2. Gameplay_Scene
-  - Game Management  
-    - GameManager Script
-      -  Starts the spawn rate for the enemies
-      -  Keeps track of points for the player through the Canvas and text
-    - Conductor Script
-      -  Handles the music and the speed of the beat 
+  - The Scene map is controlled by a tile grid system
+    - Tilemap_Back is the ground layer which all other models stand on top of
+    - Tilemap_Mid is on the enviroment layer which contains hitboxs that the player and npc collide with
+  - Game Handler Scripts 
+    - Main Camera 
+      - Attacked to MainCamera object
+      - Moves and stays focused on the player object  
+    - GameManager 
+      - Attached to the GameManager object
+      - Starts the spawn rate for the enemies
+      - Keeps track of points for the player through the Canvas and text
+    - Conductor 
+      - Attached to the Conductor object
+      - Handles the music and the speed of the beat 
     - Rhythm Controller
-      -  Handles the Rhythm logic 
+      - Attached to the Rhythm object
+      - Handles the Rhythm logic 
+  - Player Character and Non-Player Character (NPC) Scripts
+    - Player Controller 
+      - Attached to Player object
+      - Handles input from keyboard
+      - Updates player model based on input from user
+    - EnemyAI
+      - Handles the pathing to track and move to the player 
+      - Uses A star pahting algorithm to find the most optimal pathe to the player
+    - Enemy Animations
+      - This handles the animation of the enemies and is the master controller 
+      - Is decoupled from EnemyAI so the visiuals and logic can function without each other  
+    - Health
+      - Handles all health logic for player and npcs  
+  - Other Scripts
+    -  Projectile Folder
+      - Arrow Script
+        - Handles the collision and the logic of the arrow
+      - ShootProjectiles
+        - Handler for whenever an object shoots a projectile
+        - multiple scripts can subcribe to this class
+      - MeleeAttacks
+        - This script handles melee logic and collsions of all objects
 
+## TODO
+The following is a list of feature but did not have time for but can improve the project overall
+- [ ] Add Character options
+  - There was a plan to add at least one more character with a melee attack and a shield to block as a special
+- [ ] Implement other enemies 
+  - There was two other planned enemies
+    - One is a mushroom character with a projectile attack
+    - The other is a floating eye that explodes when close  
+- [ ] Fix up death screen 
+  - The transitions in the death screen need to be cleaned up. It doesn't work all the time
+- [ ] Disconnect the animation from the player script
+  - This would make it easier to add new models for the player and the logic for the player controller would be simplied 
