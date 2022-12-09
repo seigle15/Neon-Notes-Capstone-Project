@@ -37,8 +37,7 @@ All important folders for how the program operates is located in the Assets fold
       -  Starts the spawn rate for the enemies
       -  Keeps track of points for the player through the Canvas and text
     - Conductor Script
-      -   sdfsjk;g
+      -  Handles the music and the speed of the beat 
     - Rhythm Controller
       -  Handles the Rhythm logic 
-   
 
