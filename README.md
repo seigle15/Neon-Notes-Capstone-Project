@@ -10,7 +10,8 @@ To play the game you need:
    - Click on green "Code" button 
    - "Download Zip" 
    - Open the Folder NeonNotes
-   - Then click on the executable named "Neon Notes"
+   - Open Builds
+   - Then Click on the executable "NeonNotes"
 
 ## How To play
 - Click [here](Playing.md) for an overview to start playing
